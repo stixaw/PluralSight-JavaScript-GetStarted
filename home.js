@@ -192,3 +192,69 @@ changeElementColor('message', 'purple')
 // Get Click event 
 getClick('review-btn')
 
+// let values = ['a', 'b', 'c'];
+
+//access an element
+// let element1 = values[0];
+// console.log(element1); //result = a
+
+// add to end of array
+// values.push('d');
+// console.log(values); //result = ['a', 'b', 'c', 'd']
+
+//add to front of array
+// values.unshift('z');
+
+//looping through and array
+// values.forEach(function(item, index, array) {
+//     console.log(item, index)
+// })
+//results z 0, a 1, b 2, c 3, d 4
+
+//changing an element
+// values[0] = 'aa';
+// console.log(values[0]); //result aa
+
+// slice create new array from original array
+// values = ['a', 'b', 'c', 'd', 'e'];
+// const newValues = values.slice(1, 4);
+// console.log(newValues); // result ['b', 'c', 'd']
+// console.log(values); // result ['a', 'b', 'c', 'd', 'e']
+
+// splice removes from original array
+// values = ['a', 'b', 'c', 'd', 'e'];
+// const removed = values.splice(2, 1);
+// console.log(removed); //result c
+// console.log(values); // result ['a', 'b', 'd', 'e']
+
+//splice add element in index defined to original array
+// values = ['a', 'b', 'c', 'd', 'e'];
+// values.splice(2, 0, 'zz');
+// console.log(values); //results ['a', 'b', 'zz', 'c', 'd', 'e'];
+
+// const containers = document.getElementsByClassName('container'); //HTML Collection very much like an array
+// containers[2].classList.add('d-none')
+// console.log(containers.length)
+
+//Hoisting
+// productId = 456; // this is a reference to an undeclared variable
+// console.log(productId);
+
+// var productId = 123; //this allows the productID above to be used without declaring it properly
+
+// functions get hoisted directly to the top
+
+// 'use strict';
+
+// productId = 1234;
+// console.log(productId)
+//this is being declared on an object called window
+
+function foo() {
+    return "bar"
+}
+console.log(foo())
+
+for(let i=0; i <= 5; i++){
+    console.log(i)
+}

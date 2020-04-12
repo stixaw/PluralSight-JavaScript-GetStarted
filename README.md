@@ -621,8 +621,222 @@ function getClick(id){
 
 ####  Showing and Hiding Elements
 
+we can use classes to hide or show an element
 
+example:
+```
+function getClick(id){
+    const button = document.getElementById(id);
+    button.addEventListener('click', function(){
+        const review = document.getElementById('review');
+        if (review.classList.contains('d-none')){
+            review.classList.remove('d-none');
+            button.textContent="CLOSE REVIEW";
+        }
+        else{
+            review.classList.add('d-none');
+            button.textContent="SEE REVIEW"
+        }
+    })
+}
+```
 
 --------------------------------------------
 ## Module 9
 ### Arrays
+
+An array is an ordered collection of data (either primitive or object depending upon the language). Arrays are used to store multiple values in a single variable. 
+Each item in an array has a number attached to it, called a numeric index, that allows you to access it. 0 based index
+
+#### Creating and Initializing Arrays
+[] = array
+array has 4 elements
+```let myArray = [1,2,3,4];```
+
+``` let values = Array.of(1,2,3);```
+
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array
+
+#### Accesssing Array Items
+
+Using Methods
+```
+let values = ['a', 'b', 'c'];
+
+//access an element
+let element1 = values[0];
+console.log(element1); //result = a
+
+Changing an element:
+values[0] = 'aa';
+console.log(values[0]) //result aa
+
+```
+#### Manipulating Arrays
+
+```
+// add to end of array
+values.push('d');
+console.log(values); //result = ['a', 'b', 'c', 'd']
+
+//remove element from end of array
+const last = values.pop() //result = ['a', 'b', 'c']
+console.log(last) //result = d
+
+//add to front of array
+values.unshift('z');  //result = ['z', 'a', 'b', 'c']
+
+// remove element from front of array
+const first = values.shift(); //result = ['a', 'b', 'c']
+console.log(first) result z
+```
+
+#### slice() and splice()
+
+* slice() creates a new array
+* splice(index, deleteCount)
+* splice(index, deleteCount, newItems)
+
+slice create new array from original array
+```
+values = ['a', 'b', 'c', 'd', 'e'];
+const newValues = values.slice(1, 4);
+console.log(newValues); // result ['b', 'c', 'd']
+console.log(values); // result ['a', 'b', 'c', 'd', 'e']
+```
+
+// splice remove items in an array
+```
+values = ['a', 'b', 'c', 'd', 'e'];
+const removed = values.splice(2, 1);
+console.log(removed); //result c
+console.log(values) // result ['a', 'b', 'd', 'e']
+```
+
+// splice to add item in array
+```
+values = ['a', 'b', 'c', 'd', 'e'];
+values.splice(2, 0, 'zz');
+console.log(values); //results ['a', 'b', 'zz', 'c', 'd', 'e'];
+```
+
+#### Array Searching and Looping
+
+Looping
+```
+let values = ['a', 'b', 'c'];
+//looping through and array
+values.forEach(function(item, index, array) {
+    console.log(item, index)
+})
+//results a 0, b 1, c 2
+```
+
+Searching
+find an index of an item:
+```
+let values = ['a', 'b', 'c'];
+let pos = values.indexOf('a');
+//result = 0
+```
+
+Filter
+loops through the array and compares the item in the element that matches the item we are looking for..
+```
+let values = ['a', 'b', 'c'];
+const set = values.filter(function(item) {
+    return item > b
+})
+console.log(set) //result = c
+```
+
+Find
+look through to find first time that matches criteria
+```
+let values = ['a', 'b', 'bbb', 'c'];
+const found = values.filterfind(function(item) {
+    return item.length > 1
+})
+console.log(found) //result = bbb
+```
+
+#### Arrays in the DOM
+
+Arrays in DOM when created are HTMLCollections
+
+Can find elements and add them to an array and manipulate the items
+```
+const containers = document.getElementsByClassName('container'); //HTML Collection very much like an array
+containers[2].classList.add('d-none')
+console.log(containers.length)
+```
+
+-----------------------------------------------
+## Module 10
+### Scope and Hoisting
+The current context of execution. The context in which values and expressions are "visible" or can be referenced. If a variable or other expression is not "in the current scope," then it is unavailable for use. Scopes can also be layered in a hierarchy, so that child scopes have access to parent scopes, but not vice versa.
+
+#### Global Scope
+he following code is valid due to the variable being declared outside the function, making it global:
+```
+let x = "declared outside function";
+
+exampleFunction();
+
+function exampleFunction() {
+    console.log("Inside function");
+    console.log(x);
+}
+
+console.log("Outside function");
+console.log(x);
+
+```
+polluting the global scope is when there are too many variables at the global level
+
+best practise
+create an object to contain the variables:
+
+```
+const app = {
+    productId: 12345,
+    userName: 'Joe',
+    orderNumber: 789
+};
+```
+
+#### Function Scope
+A function serves as a closure in JavaScript, and thus creates a scope, so that (for example) a variable defined exclusively within the function cannot be accessed from outside the function or within other functions.
+
+```
+function exampleFunction() {
+    var x = "declared inside function";  // x can only be used in exampleFunction
+    console.log("Inside function");
+    console.log(x);
+}
+
+console.log(x);  // Causes error
+```
+
+#### var and Hoisting
+
+var allows for Hoisting
+
+Hoisting:
+a strict definition of hoisting suggests that variable and function declarations are physically moved to the top of your code, but this is not in fact what happens. Instead, the variable and function declarations are put into memory during the compile phase, but stay exactly where you typed them in your code.
+
+```
+productId = 456;
+console.log(productId);
+
+var productId = 123;
+```
+
+#### Undeclared Variables and Strict Mode
+```
+'use strict';
+
+productId = 1234;
+console.log(productId)
+```
+

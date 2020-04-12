@@ -22,6 +22,14 @@ function changeElementColor(id, color) {
 function getClick(id){
     const button = document.getElementById(id);
     button.addEventListener('click', function(){
-        showMessage('CLICKED')
+        const review = document.getElementById('review');
+        if (review.classList.contains('d-none')){
+            review.classList.remove('d-none');
+            button.textContent="CLOSE REVIEW";
+        }
+        else{
+            review.classList.add('d-none');
+            button.textContent="SEE REVIEW"
+        }
     })
 }
