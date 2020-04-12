@@ -320,8 +320,6 @@ javascript will try to convert types so string 1 become number 1
 
 ``` 1 == "1" results in true ```
 
-
-
 #### Switch statements
  switch statements are your friend — they take a single expression/value as an input, and then look through a number of choices until they find one that matches that value, executing the corresponding code that goes along with it.
 
@@ -355,9 +353,9 @@ block is code existing between { }
 example: 
 ``` if (true){
     const value = 'yes';
-    showMessage(value)
+    showMessage(value);
 }
-console.log(value)  // becomes value is undefined
+console.log(value);  // becomes value is undefined
 ```
 
 global variable exist outside of block and can be used by all blocks
@@ -369,9 +367,9 @@ const value = 'yes';
 
 if (true){
 
-    showMessage(value)
+    showMessage(value);
 }
-console.log(value)  // results in true
+console.log(value);  // results in true
 ```
 
 #### Looping with for()
@@ -379,8 +377,8 @@ console.log(value)  // results in true
 for loop is a way to loop through a block of code while a condition is defined for a set number of loops and is still true:
 ```
 for (let i = 0; i < 5; i++){
-    console.log(i)
-}
+    console.log(i);
+};
 //results 0 1 2 3 4
 
 ```
@@ -389,7 +387,7 @@ have to stop the service and restart and fix the infitnate loop first!
 
 example:
 ```
-for (let i=0; i < 5; i--)
+for (let i=0; i < 5; i--);
 ```
 
 #### Looping with while()
@@ -397,22 +395,234 @@ for (let i=0; i < 5; i--)
 while loops loop while the condition is true as well.
 
 ```
-count = 0;
+let count = 5;
 
-while(count !== 5) {
-    console.log(count)
-    count++
-}
-//results 0 1 2 3 4
+while(count > 0) {
+    console.log(count);
+    count--;
+};
+//results 5 4 3 2 1
 ```
 
 #### Looping with do ... while()
 
 ```
+let count = 0;
 do{
-    showMessage(`Sale ${count}`)
-    console.log(count)
-    count++
+    showMessage(`Sale ${count}`);
+    console.log(count);
+    count++;
 }
-while(count < 8)
+while(count < 8);
 ```
+-------------------------------------------
+## Module 7
+### Functions
+Functions are one of the fundamental building blocks in JavaScript. A function is a JavaScript procedure—a set of statements that performs a task or calculates a value. To use a function, you must define it somewhere in the scope from which you wish to call it.  A Function is a block of code which is named.
+
+you want your code to be reusable in a function.
+
+#### Function Basics
+
+A function definition (also called a function declaration, or function statement) consists of the function keyword, followed by:
+
+The name of the function.
+A list of parameters to the function, enclosed in parentheses and separated by commas.
+The JavaScript statements that define the function, enclosed in curly brackets, {...}.
+
+example:
+```
+function my_Function() {
+   console.log("my function");
+};
+
+calling a function
+my_Function("A FUNCTION");
+```
+
+#### Function Expressions
+While the function declaration above is syntactically a statement, functions can also be created by a function expression.
+
+Such a function can be anonymous; it does not have to have a name.
+
+example:
+```
+let fn = function expression() {
+    showMessage("expressions");
+}
+
+calling the expression
+fn();
+```
+
+#### Passing Information to Functions
+Calling the function actually performs the specified actions with the indicated parameters
+
+example:
+```
+function squared(x) {
+    return x * x;
+};
+
+calling:
+squared(5);
+```
+
+#### Function Return Values
+
+example:
+```
+function squared(x) {
+    const result = x * x;
+    return result;
+};
+
+calling:
+squared(5);
+returns: 25
+```
+
+#### Function Scope
+variables in the body of a function will only be available inside that function
+
+if a variable is set outside of the function and is return from the function its available to the next block of code
+
+#### Using Functions to modify Web Pages
+
+a function can feed results to a web page by creating data for a variable held in a textContent 
+
+-------------------------------------------
+## Module 8
+### Objects and the DOM
+
+#### Object Properties
+
+variables attached to an object
+
+example:
+```
+let car = {
+    doors: 4,
+    color: 'red',
+    make: 'CR-V'
+    manufacturer: 'Honda'
+}
+```
+
+changing properties in Object
+```
+car.color = 'blue'
+
+car['make'] = 'HR-V'
+```
+
+#### Object Methods
+
+functions attached to an object
+example:
+```
+let car = {
+    doors: 4,
+    color: 'red',
+    make: 'CR-V'
+    manufacturer: 'Honda'
+    showInfo: function() {
+        console.log("In show info")
+    }
+}
+```
+
+#### Passing Objectes to Functions
+
+Very different to pass an object to a function
+when you pass an object that function has access to all its properties and methods
+
+example not using object:
+```
+let message = "Hello";
+function changeMessage(message){
+    message = "Hi";
+}
+
+changeMessage(message); this only changes the parameter message because it doesn't return the variable
+showMessage(message);
+```
+
+example with Object:
+```
+let car = {
+    doors: 4,
+    color: 'red',
+    make: 'CR-V',
+    manufacturer: 'Honda',
+    showInfo: function() {
+        console.log("In show info")
+    }
+}
+
+function changeColor(car, color) {
+    car.color = color;
+}
+
+changeColor(car, 'purple')
+
+showMessage(car.color)
+```
+
+#### Standard Built-in Objects
+
+The term "global objects" (or standard built-in objects) here is not to be confused with the global object. Here, "global objects" refer to objects in the global scope.
+
+The global object itself can be accessed using the this operator in the global scope. In fact, the global scope consists of the properties of the global object, including inherited properties, if any.
+
+examples:
+Date
+Math
+
+
+#### The Document Object Model (DOM)
+The Dom:
+The DOM is a document model loaded in the browser and representing the document as a node tree, where each node represents part of the document (e.g. an element, text string, or comment).
+
+The DOM is one of the most-used APIs on the Web because it allows code running in a browser to access and interact with every node in the document. Nodes can be created, moved and changed. Event listeners can be added to nodes and triggered on occurrence of a given event.
+
+DOM was not originally specified—it came about when browsers began implementing JavaScript. 
+
+Usage in code:
+
+document.getElementById('id') returns an object on the DOM that has a property
+
+
+#### Styling DOM Elements
+
+https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement
+
+Styleing with javascript code
+HTMLElement.style
+
+
+#### Detecting Button Clicks
+
+HTMLElement.click()
+
+Find element button
+its an anchor tag <a>
+handle click in javascript instead of href 
+
+example of function:
+```
+function getClick(id){
+    const button = document.getElementById(id);
+    button.addEventListener('click', function(){
+        showMessage('CLICKED')
+    })
+}
+```
+
+####  Showing and Hiding Elements
+
+
+
+--------------------------------------------
+## Module 9
+### Arrays
