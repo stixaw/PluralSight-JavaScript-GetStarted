@@ -5,7 +5,7 @@
 
 
 #### Adding JavaScript to HTML
-```
+```html
 <script src="./filename.js"></script>
 ```
 
@@ -23,9 +23,11 @@ JavaScript is case sensitive
 
 #### Comments:
 
-```// Single Line Comment```
-
+```javascript
+// Single Line Comment
 ```
+
+```javascript
 /* multiple 
 line 
 comments
@@ -839,4 +841,43 @@ var productId = 123;
 productId = 1234;
 console.log(productId)
 ```
+
+## Strategy Pattern:
+```javascript
+const dogs = [
+  {
+    name: 'Milo',
+    shouldBeGroomed: true,
+    groom: () => {
+      console.log('BZZZZ')
+    }
+  },
+  {
+    name: 'Tinkerbell',
+    shouldBeGroomed: false,
+    groom: () => {
+      console.log('Simple wash and brush')
+    }
+  },
+  {
+    name: 'Lynus',
+    shouldBeGroomed: false,
+    groom: () => {
+      console.log('Simple wash and brush')
+    }
+  }
+]
+const groomAllDogsThatNeedIt = dogs => {
+  if (dogs) {
+    // dogs.forEach(dog => {
+    //   if (dog.shouldBeGroomed) dog.groom()
+    // })
+    dogs.find(dog => dog.shouldBeGroomed).groom()
+  }
+}
+groomAllDogsThatNeedIt(dogs)
+```
+Determine strategy for what is being called
+Open/Closed Principles
+"software entities should be open for extension, but closed for modification". that is, such an entity can allow its behaviour to be extended without modifying its source code
 
